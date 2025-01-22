@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:temporizador_app/escoger_minutos.dart';
 
 class SelectorDeTiempo extends StatelessWidget {
   const SelectorDeTiempo({super.key});
@@ -15,7 +16,14 @@ class SelectorDeTiempo extends StatelessWidget {
           children: [
             Image.asset("assets/images/small_chicken.png"),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (_) {
+                    return EscogerMinutos();
+                  },
+                );
+              },
               child: Text("iniciar"),
             )
           ],
