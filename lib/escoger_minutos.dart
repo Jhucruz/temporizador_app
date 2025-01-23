@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class EscogerMinutos extends StatefulWidget {
-  const EscogerMinutos({super.key});
+  final void Function(int) seleccionDeTiempo;
+
+  const EscogerMinutos({required this.seleccionDeTiempo, super.key});
 
   @override
   State<EscogerMinutos> createState() => _EscogerMinutos();
@@ -29,7 +31,10 @@ class _EscogerMinutos extends State<EscogerMinutos> {
                   });
                 }),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                widget.seleccionDeTiempo(minutosActuales.toInt());
+                Navigator.pop(context);
+              },
               child: Text("iniciar"),
             )
           ],

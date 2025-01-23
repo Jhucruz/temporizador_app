@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:temporizador_app/contador_de_tiempo.dart';
 import 'package:temporizador_app/selector_de_tiempo.dart';
 
 class PaginaGeneral extends StatefulWidget {
@@ -9,8 +10,23 @@ class PaginaGeneral extends StatefulWidget {
 }
 
 class _PaginaGeneralState extends State<PaginaGeneral> {
+  int? segundosSelecionadoUsuario;
+
   @override
   Widget build(BuildContext context) {
-    return SelectorDeTiempo();
+    if (segundosSelecionadoUsuario == null) {
+      return SelectorDeTiempo(
+        iniciarTiempo: (tiempoSeleccionado) {
+          setState(() {
+            segundosSelecionadoUsuario = tiempoSeleccionado * 60;
+          });
+        },
+      );
+    } else {
+      return ContadorDeTiempo(
+        segundosActuales: 0,
+        segundosSelecionados: segundosSelecionadoUsuario!,
+      );
+    }
   }
 }
